@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{%block title%} Post all page {%endblock%}
+
+{%block content%}
+
+<div id ="content">
+    <form action="/it_news/refresh/" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Refresh">
+    </form>
+
+    {% for post in it_news_posts %}
+        <h2>
+        <a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+        <p style = "color: gray">{{post.id}}번째 글</p>
+        <p>{{post.preview}}</p>
+        
+    {% endfor %}
+    <br/>
+    
+    </h2>
+    <br>
+    <!-- paging link -->
+    <div>
+        
+            
+            {% if page_obj.has_previous %}
+                {% comment %} &lt;&lt; {% endcomment %}
+                <a href ="?page={{ page_obj.previous_page_number}}">Prev</a>
+            {% endif %}
+
+            [Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}]
+
+            {% if page_obj.has_next %}
+                {% comment %} &gt;&gt; {% endcomment %}
+                <a href ="?page={{ page_obj.next_page_number}}">Next</a>
+            {% endif %}
+
+        
+        
+    </div>
+</div>
+
+{%endblock%}

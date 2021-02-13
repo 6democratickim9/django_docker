@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{%block title%} Post detail {%endblock%}
+
+{%block content%}
+
+<div id ="content">
+    <h1> Blog Search Engine</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_table}}
+        <input type ="submit" value="Search">
+
+    </form>
+    <br/><br/>
+    {%if search_list%}
+        {% for post in search_list %}
+            <h3>{{post.title}}</h3>
+            {{post.time}}
+            <p>{{post.preview}}</p>
+        {% endfor %}
+    {% elif search_keyword %}
+        [{{ search_keyword }}]의 검색 결과가 없습니다.
+
+    {%endif%}
+</div>
+
+{% endblock %}

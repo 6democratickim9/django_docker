@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <title>{% block title %}Django Web Programming{% endblock %}</title>
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static 'css/base.css' %}{% endblock %}" />
+        <link rel="stylesheet" type="text/css" href="{% block extrastyle %}{% endblock %}" />
+
+    </head>
+
+    <body>
+
+        <div id="header">
+            <h2 class="maintitle">Easy&amp;Fast Django Web Programming</h2>
+            <h4 class="welcome">Welcome, <a href="#">OOO</a> /
+                <a href="#">Change Password</a> /
+                <a href="#">Logout</a>
+            </h4>
+        </div>
+
+        <div id="menu">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'it_news:post_all' %}">scrapped news</a></li>
+            <li><a href="#">Photo</a></li>
+            
+            <li><a href="{% url 'weather:weather' %}">Weather&amp;Forecast</a>
+                
+            </li>
+            <li><a href="{% url 'it_news:post_search' %}">Search</a></li>
+            <li><a href="">Admin</a></li>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        {% block footer %}{% endblock %}
+
+    </body>
+
+</html>
