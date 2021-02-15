@@ -9,7 +9,7 @@ class it_news(models.Model):
 
     title = models.CharField(max_length=100,unique=True)
     time = models.CharField(max_length=100)
-    preview = models.CharField('preview',unique=True,max_length=1000)
+    preview = models.CharField('preview',unique=True,max_length=500)
     id = models.IntegerField('id',primary_key=True)
     
 
